@@ -20,6 +20,7 @@ class AbstractOperation : Operation {
 	private:
 		char operation_type; 
 
+	public:
 		AbstractOperation(char mathOp) {
 			operation_type = mathOp;
 		}
@@ -32,7 +33,5 @@ class AbstractOperation : Operation {
 		{
 
 		}
-
-
 };
 
