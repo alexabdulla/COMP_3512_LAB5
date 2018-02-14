@@ -17,6 +17,22 @@ class Operation {
 
 // this class implements operation
 class AbstractOperation : Operation {
+	private:
+		char operation_type; 
+
+		AbstractOperation(char mathOp) {
+			operation_type = mathOp;
+		}
+
+		char get_code() {
+			return operation_type;
+		}
+
+		~AbstractOperation()
+		{
+
+		}
+
 
 };
 
