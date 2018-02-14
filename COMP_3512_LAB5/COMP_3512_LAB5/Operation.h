@@ -3,15 +3,20 @@
 class Operation {
 	public: 
 		// purely virtual?
-		char get_code();
+		virtual char get_code() = 0;
 
 		// purely virtual?
-		int perform(int, int);
+		virtual int perform(int, int) = 0;
 		
-		// inline implemetation?
-		~Operation();
+		// inline empty implemetation?
+		~Operation() { };
 
 		//testing
+
+};
+
+// this class implements operation
+class AbstractOperation : Operation {
 
 };
 
