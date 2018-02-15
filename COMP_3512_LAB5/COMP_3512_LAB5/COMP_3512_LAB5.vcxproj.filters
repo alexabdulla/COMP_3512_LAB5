@@ -30,6 +30,9 @@
     <ClInclude Include="MultiplicationOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RPNCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
