@@ -16,7 +16,7 @@ class Operation {
 };
 
 // this class implements operation
-class AbstractOperation : Operation {
+class AbstractOperation : public Operation {
 	private:
 		char operation_type; 
 
