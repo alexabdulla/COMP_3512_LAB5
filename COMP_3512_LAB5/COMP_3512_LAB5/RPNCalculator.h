@@ -6,6 +6,7 @@
 #include "MultiplicationOperation.h"
 #include "DivisionOperation.h"
 #include <sstream>
+#include <string>
 
 class RPNCalculator {
 	private:
@@ -18,14 +19,29 @@ class RPNCalculator {
 
 			switch (operation) {
 			
+			default: 
+				temp = new AdditionOperation();
+				break;
 			case '+' :
 				temp = new AdditionOperation();
+
+				std::cout << "We are doing addition";
+				break;
 			case '-' :
 				temp = new SubtractionOperation();
+
+				std::cout << "We are doing subtraction";
+				break;
 			case '/':
 				temp = new DivisionOperation();
+
+				std::cout << "We are doing divison";
+				break;
 			case '*':
 				temp = new MultiplicationOperation();
+
+				std::cout << "We are doing mult";
+				break;
 			}
 			
 			
@@ -36,9 +52,13 @@ class RPNCalculator {
 			// pop two numbers from the stack
 			int y = stack.top();
 			stack.pop();
+			std::cout << "We are popping " << y; 
 			int x = stack.top();
 			stack.pop();
+			std::cout << "We are popping " << x;
 			// apply the op to those numbers
+			std::cout << "We are performing an op on " << x << " and " << y;
+
 			int newResult = thisOp->perform(x, y);
 			// push the results back on the stack
 			stack.push(newResult);
@@ -47,24 +67,27 @@ class RPNCalculator {
 public: 
 
 		int process_form(std::string formula) {
-			//reads formula from left to right
 			int a;
-			char b;
-			int c;
+			
+			for (int i = 0; i < formula.length(); i++) {
+				char c = formula.at(i);
+				if (isdigit(c)) {
+					std::cout << "we have found digit ";
+					a = c - '0';
+					stack.push(a);
+				} 
 
-			std::stringstream ss(formula);
-			ss >> a >> b >> c;
-		
-			// push ints from formula to the stack 
-			stack.push(c);
-			stack.push(a);
-			//stack.push(b);
-			// bunch of wierd instructions i dont understand
-			// yeah more wierd stuff, we are fucked
-			Operation* opType = this->operation_type(b);
-			this->perform(opType);
-			this->
+				else if ( c != ' ') {
 
+					std::cout << "we have found an op";
+					
+					Operation* opType = this->operation_type(c);
+					this->perform(opType);
+				}
+			}
+			
+			result = stack.top();
+			return result; 
 		}
 
 };
