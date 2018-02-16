@@ -8,12 +8,21 @@
 #include <sstream>
 #include <string>
 
+/* Defines a Reverse Polish Notation calculat */
 class RPNCalculator {
-	private:
+
+private:
+		/*The result of the RPN calculation */
 		int result;
+		/*The stack we will use for RPN*/
 		std::stack<int> stack;
 
-		// we need to do this with public constants ? and with opperaion*
+		/*
+		Desc: Gets the type of operation we want to use
+		Pre: An operation int
+		Post: A new Operation object
+		Return: Temp, an operation object
+		*/
 		Operation* operation_type(int operation) {
 			Operation* temp;
 
@@ -24,23 +33,15 @@ class RPNCalculator {
 				break;
 			case '+' :
 				temp = new AdditionOperation();
-
-				std::cout << "We are doing addition";
 				break;
 			case '-' :
 				temp = new SubtractionOperation();
-
-				std::cout << "We are doing subtraction";
 				break;
 			case '/':
 				temp = new DivisionOperation();
-
-				std::cout << "We are doing divison";
 				break;
 			case '*':
 				temp = new MultiplicationOperation();
-
-				std::cout << "We are doing mult";
 				break;
 			}
 			
@@ -48,24 +49,32 @@ class RPNCalculator {
 			return temp;
 		};
 
+		/*
+		Desc: Perrforms the operation for the top two on the stack
+		Pre: A stack
+		Post: Puts the result on top of the stack
+		Return: Void
+		*/
 		void perform(Operation* thisOp) {
-			// pop two numbers from the stack
 			int y = stack.top();
 			stack.pop();
-			std::cout << "We are popping " << y; 
+			
 			int x = stack.top();
 			stack.pop();
-			std::cout << "We are popping " << x;
-			// apply the op to those numbers
-			std::cout << "We are performing an op on " << x << " and " << y;
-
+			
 			int newResult = thisOp->perform(x, y);
-			// push the results back on the stack
+			
 			stack.push(newResult);
 		}
 
 public: 
-
+		
+		/*
+		Desc: Processes a formula using all helper methods 
+		Pre: A formula in a string
+		Post: The resulting int is return, and the result is put on top of the stack
+		Return: The resulting int
+		*/
 		int process_form(std::string formula) {
 			int a;
 			

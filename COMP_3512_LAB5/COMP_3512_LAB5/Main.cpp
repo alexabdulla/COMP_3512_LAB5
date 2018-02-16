@@ -5,6 +5,7 @@
 
 using namespace std;
 
+/*Tests the RPN calculator*/
 int main(void) {
 
 	std::cout << "Enter your formula:\n";
