@@ -77,24 +77,22 @@ public:
 		*/
 		int process_form(std::string formula) {
 			int a;
+	
+			std::istringstream iss(formula);
+			std::string token;
+			while (iss >> token) {
+				std::istringstream iss2(token); 
+					//push on stack
 			
-			for (int i = 0; i < formula.length(); i++) {
-				char c = formula.at(i);
-				if (isdigit(c)) {
-					std::cout << "we have found digit ";
-					a = c - '0';
-					stack.push(a);
-				} 
-
-				else if ( c != ' ') {
-
-					std::cout << "we have found an op";
-					
-					Operation* opType = this->operation_type(c);
+				int n;;
+				if(iss2 >>n) {
+					stack.push(n);
+				} else {
+					Operation* opType = this->operation_type(n);
 					this->perform(opType);
 				}
 			}
-			
+	
 			result = stack.top();
 			return result; 
 		}
